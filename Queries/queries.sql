@@ -113,3 +113,21 @@ FROM current_emp as ce
 		ON (ce.emp_no = de.emp_no)
 	INNER JOIN departments AS d
 		ON (de.dept_no = d.dept_no);
+
+-- Create table with sales team retirees
+SELECT di.emp_no,
+	di.first_name,
+	di.last_name,
+	di.dept_name
+INTO sales_retirees
+FROM dept_info as di
+WHERE di.dept_name = ('Sales');
+
+-- Create table with sales and development retirees
+SELECT di.emp_no,
+	di.first_name,
+	di.last_name,
+	di.dept_name
+INTO sales_dev_retirees
+FROM dept_info as di
+WHERE di.dept_name IN ('Sales', 'Development');
